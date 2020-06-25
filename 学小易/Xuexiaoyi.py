@@ -37,7 +37,7 @@ def outanswer(li):
             print('*'*50)
     else:
         print(li)                   #若参数不为列表,则返回的是错误信息,所以这里可以打印错误信息
-def login():
+def login():                                                #登录函数(获取账号的token)
     username=input("请输入账号:")
     password=input("请输入密码:")
     url="https://app.51xuexiaoyi.com/api/v1/login?username="+username+"&password="+password
@@ -53,8 +53,8 @@ def login():
         "User-Agent":"okhttp/3.11.0"
     }
     res=requests.post(url,headers=headers).json()
-    if (res['code']==200):
-        f=open('token.txt','w+')
+    if (res['code']==200):                                          #判断是否登录成功(获取到token)
+        f=open('token.txt','w+')                                    #若成功,则储存在token.txt中,方便下次使用
         f.write(res['data']['api_token'])
         f.close()
         print("登陆成功!")
